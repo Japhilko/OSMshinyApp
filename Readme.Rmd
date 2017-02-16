@@ -19,7 +19,7 @@ runGitHub("OSMshinyApp", "Japhilko")
 ```
 
 
-
+- [Using Leaflet with Shiny](https://rstudio.github.io/leaflet/shiny.html)
 
 ## Data Sources
 

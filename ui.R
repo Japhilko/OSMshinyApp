@@ -1,7 +1,7 @@
 library(shiny)
 
 shinyUI(navbarPage("Indicators",
-                   tabPanel("Indicator 1",
+                   tabPanel("Shapefile",
                             sidebarPanel(
                               selectInput("var", 
                                           label = "Choose a variable to display",
@@ -18,22 +18,15 @@ shinyUI(navbarPage("Indicators",
                             mainPanel(
                               plotOutput("map")
                             )),
-                   tabPanel("Indicator 2",
-                            sidebarPanel(
-                              selectInput("var2", 
-                                          label = "Choose a variable to display",
-                                          choices = c("street_lamp","traffic_signals"),
-                                          selected = 'street_lamp')
-                            ),
-                            sidebarPanel(
-                              selectInput("color2", 
-                                          label = "Choose a color code to display",
-                                          choices = c('blue2red','blue2green',"green2red","blue2yellow","matlab.like"),
-                                          selected = "blue2red")
-                            ),
+                   tabPanel("Leaflet",
                             # Show a plot of the generated distribution
-                            mainPanel(
-                              plotOutput("map2")
-                            ))
+                            sidebarPanel(
+                              selectInput("bgmap", 
+                                          label = "Choose a background for the map",
+                                          choices = c("Stamen Watercolor","OpenStreetMap Mapnik","OpenStreetMap - black and white"),
+                                          selected = "Stamen Watercolor")
+                            ),
+                            leafletOutput("map2")
+                            )
 )
 )
