@@ -1,24 +1,39 @@
-# ui.R
+library(shiny)
 
-shinyUI(fluidPage(
-  titlePanel("censusVis"),
-  
-  sidebarLayout(
-    sidebarPanel(
-      helpText("Create demographic maps with 
-               information from the 2010 US Census."),
-      
-      selectInput("var", 
-                  label = "Choose a variable to display",
-                  choices = c("Percent White", "Percent Black",
-                              "Percent Hispanic", "Percent Asian"),
-                  selected = "Percent White"),
-      
-      sliderInput("range", 
-                  label = "Range of interest:",
-                  min = 0, max = 100, value = c(0, 100))
-      ),
-    
-    mainPanel(plotOutput("map"))
-  )
-))
+shinyUI(navbarPage("Indicators",
+                   tabPanel("Indicator 1",
+                            sidebarPanel(
+                              selectInput("var", 
+                                          label = "Choose a variable to display",
+                                          choices = c("street_lamp","traffic_signals"),
+                                          selected = "street_lamp")
+                            ),
+                            sidebarPanel(
+                              selectInput("color", 
+                                          label = "Choose a color code to display",
+                                          choices = c('blue2red','blue2green',"green2red","blue2yellow","matlab.like"),
+                                          selected = "blue2red")
+                            ),
+                            # Show a plot of the generated distribution
+                            mainPanel(
+                              plotOutput("map")
+                            )),
+                   tabPanel("Indicator 2",
+                            sidebarPanel(
+                              selectInput("var2", 
+                                          label = "Choose a variable to display",
+                                          choices = c("street_lamp","traffic_signals"),
+                                          selected = 'street_lamp')
+                            ),
+                            sidebarPanel(
+                              selectInput("color2", 
+                                          label = "Choose a color code to display",
+                                          choices = c('blue2red','blue2green',"green2red","blue2yellow","matlab.like"),
+                                          selected = "blue2red")
+                            ),
+                            # Show a plot of the generated distribution
+                            mainPanel(
+                              plotOutput("map2")
+                            ))
+)
+)
