@@ -18,9 +18,12 @@ library(shiny)
 runGitHub("OSMshinyApp", "Japhilko")
 ```
 
+- [An Introduction to Leaflet and Shiny in R](https://github.com/SimonGoring/ShinyLeaflet-tutorial/blob/master/Shiny-leaflet-tutorial.Rmd)
 
 - [Using Leaflet with Shiny](https://rstudio.github.io/leaflet/shiny.html)
 
 ## Data Sources
 
 - [Zip code areas Germany](http://arnulf.us/PLZ)
+
+- [Leaflet Backgrounds](https://leaflet-extras.github.io/leaflet-providers/preview/)

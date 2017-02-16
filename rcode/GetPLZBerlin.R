@@ -23,7 +23,7 @@ plot(PLZber1,col="red",add=T)
 
 # Add some OSM data
 
-setwd("J:/Work/Statistik/Kolb/Paper/OSM_SmallArea/data")
+# setwd("J:/Work/Statistik/Kolb/Paper/OSM_SmallArea/data")
 
 (load("osmsa_PLZ_14.RData"))
 
@@ -32,6 +32,8 @@ ind <- match(PLZber$PLZ99,PLZ$PLZ99)
 
 PLZber$street_lamp <- PLZ$street_lamp[ind]
 PLZber$traffic_signals <- PLZ$traffic_signals[ind]
+PLZber$restaurant <- PLZ$restaurant[ind]
+
 
 # Save dataset
 save(PLZber,file="data/PLZber.rds")

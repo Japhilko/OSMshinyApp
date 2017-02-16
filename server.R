@@ -5,12 +5,9 @@ library(colorRamps)
 library(leaflet)
 
 load("data/PLZber.rds")
-Namen <- c("street_lamp","traffic_signals")
+Namen <- c("street_lamp","traffic_signals","restaurant")
 
-Namen2 <- Namen
-
-r_colors <- rgb(t(col2rgb(colors()) / 255))
-names(r_colors) <- colors()
+load("data/info_restaurant_Berlin.RData")
 
 shinyServer(function(input,output) {
   output$map <- renderPlot({
@@ -22,10 +19,14 @@ shinyServer(function(input,output) {
     spplot(PLZber,data,col.regions=col1)
   })
   output$map2 <- renderLeaflet({
-    bgmap1 <- switch(input$bgmap,"Stamen Watercolor"="Stamen.Watercolor","OpenStreetMap Mapnik"="OpenStreetMap.Mapnik",
+    bgmap1 <- switch(input$bgmap,"OpenStreetMap"="OpenStreetMap.DE","Stamen Watercolor"="Stamen.Watercolor","OpenStreetMap Mapnik"="OpenStreetMap.Mapnik",
                      "OpenStreetMap - black and white"="OpenStreetMap.BlackAndWhite")
     leaflet() %>% 
       addProviderTiles(bgmap1) %>% 
-      setView(lng = 13.40495, lat = 52.52001, zoom = 10)
+      setView(lng = 13.40495, lat = 52.52001, zoom = 10)%>%
+      addMarkers(lat = info$lat, 
+               lng = info$lon,
+               clusterOptions = markerClusterOptions(),
+               popup = as.character(info$name))
       })
 })

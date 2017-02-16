@@ -1,12 +1,12 @@
 library(shiny)
 
-shinyUI(navbarPage("Indicators",
+shinyUI(navbarPage("Geographic Visualisations",
                    tabPanel("Shapefile",
                             sidebarPanel(
                               selectInput("var", 
                                           label = "Choose a variable to display",
-                                          choices = c("street_lamp","traffic_signals"),
-                                          selected = "street_lamp")
+                                          choices = c("restaurant","street_lamp","traffic_signals"),
+                                          selected = "restaurant")
                             ),
                             sidebarPanel(
                               selectInput("color", 
@@ -19,12 +19,13 @@ shinyUI(navbarPage("Indicators",
                               plotOutput("map")
                             )),
                    tabPanel("Leaflet",
+                            headerPanel("Restaurants in Berlin"),
                             # Show a plot of the generated distribution
                             sidebarPanel(
                               selectInput("bgmap", 
                                           label = "Choose a background for the map",
-                                          choices = c("Stamen Watercolor","OpenStreetMap Mapnik","OpenStreetMap - black and white"),
-                                          selected = "Stamen Watercolor")
+                                          choices = c("OpenStreetMap","Stamen Watercolor","OpenStreetMap Mapnik","OpenStreetMap - black and white"),
+                                          selected = "OpenStreetMap")
                             ),
                             leafletOutput("map2")
                             )
