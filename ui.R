@@ -1,4 +1,5 @@
 library(shiny)
+library(leaflet)
 
 shinyUI(navbarPage("Geographic Visualisations",
                    tabPanel("Shapefile",
